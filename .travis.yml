@@ -1,0 +1,11 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t tchappel/client-ci -f Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true tchappel/client-ci npm run test
