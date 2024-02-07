@@ -5,7 +5,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t clientci -f Dockerfile.dev ./client
+  - docker build -t client-ci -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true clientci npm run test
+  - docker run -e CI=true client-ci npm run test
