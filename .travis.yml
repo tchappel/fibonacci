@@ -9,3 +9,9 @@ before_install:
 
 script:
   - docker run -e CI=true client-ci npm run test
+
+after_success:
+  - docker build -t tchappel/fibonacci-client ./client
+  - docker build -t tchappel/fibonacci-nginx ./nginx
+  - docker build -t tchappel/fibonacci-server ./server
+  - docker build -t tchappel/fibonacci-worker ./worker
