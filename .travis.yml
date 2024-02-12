@@ -22,3 +22,15 @@ after_success:
   - docker push tchappel/fibonacci-nginx
   - docker push tchappel/fibonacci-server
   - docker push tchappel/fibonacci-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "fibonacci"
+  env: "Fibonacci-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-992382739197"
+  bucket_path: "fibonacci"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
